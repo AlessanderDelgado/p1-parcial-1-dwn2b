@@ -38,22 +38,30 @@
 // };
 
 // Discos:
-let discos = [];
+var discosArray = []; // Array de discos
 
 // Función Cargar:
 const Cargar = () => {
     // Cositas:
-    nombreDisco = prompt("Ingrese el nombre del disco");
-    banda = prompt("Ingrese el nombre de la banda");
-    codigoDisco = prompt("Ingrese codigo numerico del disco");
+    let disco = {
 
+    }
+
+    disco.nombreDisco = prompt("Ingrese el nombre del disco");
+    disco.banda = prompt("Ingrese el nombre de la banda");
+    disco.codigoDisco = prompt("Ingrese codigo numerico del disco");
+    disco.pistasArray = []
 
 
     do {
-        nombreCancion = prompt("Ingrese la cancion");
-        duracionCancion = prompt("Ingrese la duracion de la cancion");
+        let pista = {}
+        pista.nombreCancion = prompt("Ingrese la cancion");
+        pista.duracionCancion = prompt("Ingrese la duracion de la cancion");
+        disco.pistasArray.push(pista);
+
     } while (confirm("Quiere seguir cargando canciones?"));
 
+    discosArray.push(disco)
 };
 
 // Función Mostrar:
