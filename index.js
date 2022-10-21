@@ -46,8 +46,9 @@ const Cargar = () => {
     let disco = {
 
     }
-
+    do {
     disco.nombreDisco = prompt("Ingrese el nombre del disco");
+    } while (validarNombreDisco(disco.nombreDisco)) // llamar a la funcion
     disco.banda = prompt("Ingrese el nombre de la banda");
     disco.codigoDisco = prompt("Ingrese codigo numerico del disco");
     disco.pistasArray = []
