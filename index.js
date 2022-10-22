@@ -40,6 +40,43 @@
 // Discos:
 var discosArray = []; // Array de discos
 
+function validarString(cadena) {
+    if (cadena != null){
+        cadena = cadena.trim();
+    }
+    if (cadena == "" || cadena == null || cadena == undefined){
+        alert ("Algo salio mal, volve a ingresar un dato");
+        return false;
+    }
+    return true;
+}
+
+function validarCodigo(codigoDisco){
+    let flag = true;
+    if (discosArray.lenght > 0){
+        for (let disco of discosArray) {
+            if (disco.codigoDisco == codigoDisco){
+                alert(" El codigo está repetido, ingrese otro codigo")
+                flag = true;
+            }
+        }
+    }
+    if (codigoDisco <= 0 || codigoDisco > 999 || isNaN(codigoDisco) || codigoDisco == ""){
+        alert("Codigo invalido, ingrese entre 1 y 999");
+        flag = true;
+    }
+    return flag;
+}
+
+function validacionDuracion(duracion) {
+    let flag = false;
+    if (duracion < 0 || duracion > 7200 || isNaN(duracion)){
+        alert("La duracion esta mal");
+        flag = true;
+    }
+    return flag;
+}
+
 // Función Cargar:
 const Cargar = () => {
     // Cositas:
@@ -47,17 +84,29 @@ const Cargar = () => {
 
     }
     do {
-    disco.nombreDisco = prompt("Ingrese el nombre del disco");
-    } while (validarNombreDisco(disco.nombreDisco)) // llamar a la funcion
-    disco.banda = prompt("Ingrese el nombre de la banda");
-    disco.codigoDisco = prompt("Ingrese codigo numerico del disco");
+        disco.nombreDisco = prompt("Ingrese el nombre del disco");
+    } while (validarString(disco.nombreDisco)) // llamar a la funcion
+
+    do{
+        disco.banda = prompt("Ingrese el nombre de la banda");
+    } while (validarString(disco.banda))
+
+    do {
+        disco.codigoDisco = parseInt(prompt("Ingrese codigo numerico del disco"));
+    } while (validarCodigo(disco.codigoDisco));
+
     disco.pistasArray = []
 
 
     do {
         let pista = {}
-        pista.nombreCancion = prompt("Ingrese la cancion");
-        pista.duracionCancion = prompt("Ingrese la duracion de la cancion");
+        do {
+            pista.nombreCancion = prompt("Ingrese la cancion");
+        } while (validarString(pista.nombreCancion))
+        do {
+            pista.duracionCancion = parseInt(prompt("Ingrese la duracion de la cancion"));
+        } while (validacionDuracion(pista.duracionCancion ));
+
         disco.pistasArray.push(pista);
 
     } while (confirm("Quiere seguir cargando canciones?"));
