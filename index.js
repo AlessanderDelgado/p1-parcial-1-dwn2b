@@ -117,12 +117,25 @@ const Cargar = () => {
 // Función Mostrar:
 const Mostrar = () => {
     // Variable para ir armando la cadena:
-    let html = '';
+    let contenedor = document.getElementById('info');
 
-    // Cositas:
+    for(let discoNuevo of ArregloDeDiscos) {
 
-    // Si modificaste el nombre de la variable para ir armando la cadena, también hacelo acá:
-    document.getElementById('info').innerHTML = html; // <--- ahí es acá
+        let html = '<div>';
+        html += `\n   <h2>${discoNuevo.nombre}</h2>`;
+
+        let pistas = discoNuevo.pistas;
+
+        for(let pistasDelDisco of pistas) {
+
+            html += `\n    <h3>${pistasDelDisco.nombreCancion}</h3>`;
+            html += `\n    <p>${pistasDelDisco.duracion}</p>`;
+        }
+
+        html += '\n</div>';
+        contenedor.innerHTML += html;
+    }
+
 };
 
 // Todas las funciones que necesites:
