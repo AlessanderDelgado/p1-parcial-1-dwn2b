@@ -117,25 +117,44 @@ const Cargar = () => {
 // Función Mostrar:
 const Mostrar = () => {
     // Variable para ir armando la cadena:
+    // function colorear(duracion) {
+
+    //     let pista = {};
+
+    //     if (pista.duracion > 180 ){
+    //         alert("FUNCIONA QUE DETECTA QUE TIENE MAS DE 180");
+    //         /*pPintado.setAttribute("class", "red");*/
+
+    //         var elemento = document.querySelector("p");
+    //         /*.innerHTML;*/
+    //         elemento.classList.add('red');
+    //     }
+    //     return;
+    // }
+
+
     let contenedor = document.getElementById('info');
 
-    for(let discoNuevo of ArregloDeDiscos) {
-
+    for(let disco of discosArray) {
+        let color = "";
         let html = '<div>';
-        html += `\n   <h2>${discoNuevo.nombre}</h2>`;
+        html += `\n   <h2>${disco.nombreDisco}</h2>`;
 
-        let pistas = discoNuevo.pistas;
+        let pistas = disco.pistasArray;
 
-        for(let pistasDelDisco of pistas) {
-
-            html += `\n    <h3>${pistasDelDisco.nombreCancion}</h3>`;
-            html += `\n    <p>${pistasDelDisco.duracion}</p>`;
+        for(let pista of pistas) {
+            if (pista.duracionCancion > 180) {
+                color = "red";
+            }
+            html += `\n    <h3>${pista.nombreCancion}</h3>`;
+            html += `\n    <p class="${color}">${pista.duracionCancion}</p>`;
         }
 
         html += '\n</div>';
         contenedor.innerHTML += html;
     }
 
+    // colorear(pista.duracionCancion);
 };
 
 // Todas las funciones que necesites:
