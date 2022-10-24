@@ -139,6 +139,8 @@ const Mostrar = () => {
         let color = "";
         let html = '<div>';
         html += `\n   <h2>${disco.nombreDisco}</h2>`;
+        html += `\n   <h3>${disco.banda}</h3>`;
+        html += `\n   <h3>${disco.codigoDisco}</h3>`;
 
         let pistas = disco.pistasArray;
 
