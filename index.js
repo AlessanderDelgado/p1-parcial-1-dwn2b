@@ -46,22 +46,22 @@ function validarString(cadena) {
     }
     if (cadena == "" || cadena == null || cadena == undefined){
         alert ("Algo salio mal, volve a ingresar un dato");
-        return false;
+        return true;
     }
-    return true;
+    return false;
 }
 
-function validarCodigo(codigoDisco){
-    let flag = true;
-    if (discosArray.lenght > 0){
+function validarCodigo(codigo){
+    let flag = false;
+    if (discosArray.length > 0){
         for (let disco of discosArray) {
-            if (disco.codigoDisco == codigoDisco){
+            if (disco.codigoDisco == codigo){
                 alert(" El codigo está repetido, ingrese otro codigo")
                 flag = true;
             }
         }
     }
-    if (codigoDisco <= 0 || codigoDisco > 999 || isNaN(codigoDisco) || codigoDisco == ""){
+    if (codigo <= 0 || codigo > 999 || isNaN(codigo) || codigo == ""){
         alert("Codigo invalido, ingrese entre 1 y 999");
         flag = true;
     }
