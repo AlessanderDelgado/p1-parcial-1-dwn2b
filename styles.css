@@ -34,8 +34,8 @@ html {
 
 /** Body */
 body {
-    background-color: #134F5C;
-    color: #D0E0E3;
+    background-color: #1a1c1d;
+    color: #c9d1d3;
 }
 
 /** Header */
@@ -59,7 +59,7 @@ h2 {
 
 h2 {
     font-size: 3em;
-    color: #134F5C;
+    color: #ffffff;
 }
 
 /** Main */
@@ -69,7 +69,7 @@ main {
     justify-content: flex-start;
     align-items: flex-start;
     padding: 4em 2em;
-    background-color: #FFF;
+    /* background-color: #FFF; */
 }
 
 main p {
@@ -126,7 +126,7 @@ main button {
     border: none;
     border-radius: .5em;
     padding: .25em .5em;
-    background: #134F5C;
+    background: #008CB8;
     cursor: pointer;
     font-size: 2.4em;
     line-height: 1.5;

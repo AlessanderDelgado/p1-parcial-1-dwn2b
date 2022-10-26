@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Programación I | Parcial 1 | APELLIDO, NOMBRE | APELLIDO, NOMBRE</title>
+    <title>Programación I | Parcial 1 | HOSHINO, AIRIN | DELGADO, ALEJANDRO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="styles.css" />
@@ -11,13 +11,37 @@
 
 <body>
     <header>
-        <h1>Programación I | Parcial 1 | APELLIDO, NOMBRE | APELLDIO, NOMBRE</h1>
+        <h1>Programación I | Parcial 1 | HOSHINO, AIRIN | DELGADO, ALEJANDRO</h1>
     </header>
     <main>
         <h2>Mis discos</h2>
         <button onclick="Cargar();">Cargar nuevo disco</button>
         <button onclick="Mostrar();">Mostrar discos</button>
         <div id="info"></div>
+        <div class="disk-container">
+            <div class="disk">
+                <div class="disk__image">
+                    <img src="" alt="">
+                </div>
+                <div class="disk__title">
+                    <h3></h3>
+                    <h4></h4>
+                </div>
+                <div class="disk__summary">
+                    <div class="disk__summary-songs"></div>
+                    <div class="disk__summary-last"></div>
+                </div>
+                <div class="disk__songs">
+                    <ul class="disk__songs-list">
+                        <li class="disk__songs-list-items"></li>
+                    </ul>
+                </div>
+                <div class="disk__summary-overall">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
         <script src="index.js"></script>
     </main>
     <footer>
