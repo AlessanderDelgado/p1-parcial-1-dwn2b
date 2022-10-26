@@ -38,36 +38,68 @@
 // };
 
 // Discos:
-var discosArray = []; // Array de discos
+var discosArray = []; // Array de discos 
 
+
+/**
+ * Valida que el dato ingresado sea correcto.
+ * @param {string} cadena 
+ * @returns 
+ */
 function validarString(cadena) {
+    /* Si lo ingresado es distinto a vacío (es decir, ingresó algo) */
     if (cadena != null){
-        cadena = cadena.trim();
+        /* elimina los espacios en blanco en ambos extremos del string. */
+        cadena = cadena.trim(); 
     }
+
+    /* Si ingresa datos vacīos o clickea en cancelar sin ingresar nada */
     if (cadena == "" || cadena == null || cadena == undefined){
-        alert ("Algo salio mal, volve a ingresar un dato");
+        /* Muestro mensaje de alerta */
+        alert ("Algo salio mal, volve a ingresar un dato"); 
         return true;
     }
     return false;
 }
 
+
+/* Ver si se puede dividir esta función en dos, o crear dos "subfunciones", para que cada una haga una sola cosa?*/
+
+/**
+ * Valida que el código no esté repetido y que esté en rango.
+ * @param {number} codigo 
+ * @returns 
+ */
 function validarCodigo(codigo){
     let flag = false;
+    /* Si tengo como mínimo un disco cargado */
     if (discosArray.length > 0){
+        /* Recorro los discos */ 
         for (let disco of discosArray) {
+            /* Si el codigo del disco ingresado es igual a algún código existente */
             if (disco.codigoDisco == codigo){
+                /* Muestro mensaje de alerta */
                 alert(" El codigo está repetido, ingrese otro codigo")
                 flag = true;
             }
         }
     }
+
+    /* Si el código no está en rango, es string o está vacīo*/
     if (codigo <= 0 || codigo > 999 || isNaN(codigo) || codigo == ""){
+        /* Muestro mensaje de alerta */
         alert("Codigo invalido, ingrese entre 1 y 999");
         flag = true;
     }
     return flag;
 }
 
+
+/**
+ * Valida que la duración esté en rango.
+ * @param {number} duracion 
+ * @returns 
+ */
 function validacionDuracion(duracion) {
     let flag = false;
     if (duracion < 0 || duracion > 7200 || isNaN(duracion)){
@@ -78,14 +110,18 @@ function validacionDuracion(duracion) {
 }
 
 // Función Cargar:
+/**
+ * Carga nuevo disco
+ */
 const Cargar = () => {
     // Cositas:
     let disco = {
 
     }
+    /* Pido ingresar datos, hasta que la función de validar que corresponda de FALSE y salga del bucle. */
     do {
         disco.nombreDisco = prompt("Ingrese el nombre del disco");
-    } while (validarString(disco.nombreDisco)) // llamar a la funcion
+    } while (validarString(disco.nombreDisco)) // llamar a la función, que devuelve true o false.
 
     do{
         disco.banda = prompt("Ingrese el nombre de la banda");
@@ -115,6 +151,9 @@ const Cargar = () => {
 };
 
 // Función Mostrar:
+/**
+ * Muestra discos
+ */
 const Mostrar = () => {
     // Variable para ir armando la cadena:
     // function colorear(duracion) {
