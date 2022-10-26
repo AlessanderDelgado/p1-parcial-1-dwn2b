@@ -38,25 +38,25 @@
 // };
 
 // Discos:
-var discosArray = []; // Array de discos 
+var discosArray = []; // Array de discos
 
 
 /**
  * Valida que el dato ingresado sea correcto.
- * @param {string} cadena 
- * @returns 
+ * @param {string} cadena
+ * @returns
  */
 function validarString(cadena) {
     /* Si lo ingresado es distinto a vacío (es decir, ingresó algo) */
     if (cadena != null){
         /* elimina los espacios en blanco en ambos extremos del string. */
-        cadena = cadena.trim(); 
+        cadena = cadena.trim();
     }
 
     /* Si ingresa datos vacīos o clickea en cancelar sin ingresar nada */
     if (cadena == "" || cadena == null || cadena == undefined){
         /* Muestro mensaje de alerta */
-        alert ("Algo salio mal, volve a ingresar un dato"); 
+        alert ("Algo salio mal, volve a ingresar un dato");
         return true;
     }
     return false;
@@ -67,14 +67,14 @@ function validarString(cadena) {
 
 /**
  * Valida que el código no esté repetido y que esté en rango.
- * @param {number} codigo 
- * @returns 
+ * @param {number} codigo
+ * @returns
  */
 function validarCodigo(codigo){
     let flag = false;
     /* Si tengo como mínimo un disco cargado */
     if (discosArray.length > 0){
-        /* Recorro los discos */ 
+        /* Recorro los discos */
         for (let disco of discosArray) {
             /* Si el codigo del disco ingresado es igual a algún código existente */
             if (disco.codigoDisco == codigo){
@@ -97,8 +97,8 @@ function validarCodigo(codigo){
 
 /**
  * Valida que la duración esté en rango.
- * @param {number} duracion 
- * @returns 
+ * @param {number} duracion
+ * @returns
  */
 function validacionDuracion(duracion) {
     let flag = false;
@@ -173,7 +173,7 @@ const Mostrar = () => {
 
 
     let contenedor = document.getElementById('info');
-
+    contenedor.innerHTML = '';
     for(let disco of discosArray) {
         let color = "";
         let html = '<div>';
