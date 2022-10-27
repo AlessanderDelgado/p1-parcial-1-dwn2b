@@ -109,6 +109,15 @@ function validacionDuracion(duracion) {
     return flag;
 }
 
+
+//Ai: hice esta funcion pero dsp me di cuenta que no es necesaria.
+//Igualmente, de forma conceptual no se bien qué es lo que va mejor.
+/*function contarDiscos () {
+    let cantidadDiscos = discosArray.length;
+    return cantidadDiscos;
+}*/
+
+
 // Función Cargar:
 /**
  * Carga nuevo disco
@@ -171,6 +180,10 @@ const Mostrar = () => {
     //     return;
     // }
 
+    /* Agarra el lugar del HTML donde se va a mostrar la cantidad de discos, y concatena la cantidad de discos*/
+    let infoDiscos = document.getElementById ('cantidad');
+    //cantDiscos.innerHTML = 'Cantidad de discos: ' + contarDiscos (); --> esto es si se usa la funcion contarDiscos
+    infoDiscos.innerHTML = `Cantidad de discos: ${discosArray.length}` ;
 
     let contenedor = document.getElementById('info');
     contenedor.innerHTML = '';
@@ -180,9 +193,10 @@ const Mostrar = () => {
         html += `\n   <h2>${disco.nombreDisco}</h2>`;
         html += `\n   <h3>${disco.banda}</h3>`;
         html += `\n   <h3>${disco.codigoDisco}</h3>`;
+        html += `\n   <h3>Cantidad Pistas: ${disco.pistasArray.length}</h3>`;
 
         let pistas = disco.pistasArray;
-
+        let pistaMax = -1;
         for(let pista of pistas) {
             if (pista.duracionCancion > 180) {
                 color = "red";
