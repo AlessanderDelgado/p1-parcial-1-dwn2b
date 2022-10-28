@@ -163,7 +163,10 @@ const Cargar = () => {
 /**
  * Muestra discos
  */
+
+
 const Mostrar = () => {
+
     // Variable para ir armando la cadena:
     // function colorear(duracion) {
 
@@ -183,33 +186,73 @@ const Mostrar = () => {
     /* Agarra el lugar del HTML donde se va a mostrar la cantidad de discos, y concatena la cantidad de discos*/
     let infoDiscos = document.getElementById ('cantidad');
     //cantDiscos.innerHTML = 'Cantidad de discos: ' + contarDiscos (); --> esto es si se usa la funcion contarDiscos
-    infoDiscos.innerHTML = `Cantidad de discos: ${discosArray.length}` ;
+    infoDiscos.innerHTML = `<div class="disk-quantity">Cantidad de discos: <span id="cantidad">${discosArray.length}</span></div>` ;
 
     let contenedor = document.getElementById('info');
     contenedor.innerHTML = '';
     for(let disco of discosArray) {
         let color = "";
-        let html = '<div>';
-        html += `\n   <h2>${disco.nombreDisco}</h2>`;
-        html += `\n   <h3>${disco.banda}</h3>`;
-        html += `\n   <h3>${disco.codigoDisco}</h3>`;
-        html += `\n   <h3>Cantidad Pistas: ${disco.pistasArray.length}</h3>`;
+        let html = '';
+        html += '\n     <div class="disk">';
+        html += '\n         <div class="disk__cover">';
+        html += '\n             <div class="disk__cover-image color">';
+        html += '\n                 <img src="assets/img/disk.png" alt="">';
+        html += '\n             </div>';
+        html += '\n             <div class="disk__code">';
+        html += `\n                 Código ${disco.codigoDisco}`;
+        html += '\n             </div>';
+        html += '\n             <div class="disk__cover-title">';
+        html += `\n                 <h3>${disco.nombreDisco}</h3>`;
+        html += `\n                 <h4>${disco.banda}</h4>`;
+        html += '\n             </div>';
+        html += '\n         </div>';
+        html += '\n         <div class="disk__summary">';
+        html += '\n             <div class="disk__summary-songs">';
+        html += '\n                 Pistas <span>#</span>';
+        html += '\n             </div>';
+        html += '\n             <div class="disk__summary-songs">';
+        html += '\n                 Duración <span>#</span>';
+        html += '\n             </div>';
+        html += '\n         </div>';
+        html += '\n         <div class="disk__songs">';
+        html += '\n             <ul class="disk__songs-list">';
+                                let pistas = disco.pistasArray;
+                                for(let pista of pistas) {
+                                    if (pista.duracionCancion > 180) {
+                                        color = "red";
+                                    }
+        html += `\n                 <li class="disk__songs-list-items">
+                                        <span class="disk__song-item">
+                                            ${pista.nombreCancion}
+                                        </span>
+                                        <span class="disk__song-duration ${color}">
+                                            ${pista.duracionCancion}s
+                                        </span>
+                                    </li>`;
+                                }
+        html += '\n             </ul>';
+        html += '\n         </div>';
+        html += '\n         <div class="disk__summary-total">';
+        html += '\n             <div class="disk__summary-total__item">';
+        html += '\n                 <span>Promedio de duración: </span>#';
+        html += '\n             </div>';
+        html += '\n             <div class="disk__summary-total__item">';
+        html += '\n                 <span>Pista con mayor duración: </span>#';
+        html += '\n             </div>';
+        html += '\n         </div>';
+        html += '\n     </div>';
 
-        let pistas = disco.pistasArray;
-        let pistaMax = -1;
-        for(let pista of pistas) {
-            if (pista.duracionCancion > 180) {
-                color = "red";
-            }
-            html += `\n    <h3>${pista.nombreCancion}</h3>`;
-            html += `\n    <p class="${color}">${pista.duracionCancion}</p>`;
-        }
-
-        html += '\n</div>';
         contenedor.innerHTML += html;
     }
-
+    const randomColor = Math.floor(Math.random()*16777215).toString(16);
+    let cambiaColor = document.getElementsByClassName('color');
+    for (const elemento of cambiaColor) {
+        elemento.style.backgroundColor = "#" + randomColor;
+    }
     // colorear(pista.duracionCancion);
 };
 
+const setBg = () => {
+
+  }
 // Todas las funciones que necesites:
