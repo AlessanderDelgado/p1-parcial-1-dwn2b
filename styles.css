@@ -64,7 +64,7 @@ svg {
 @font-face {
   font-family: "Jost";
   src: url("assets/fonts/jost-variablefont_wght-webfont.eot");
-  src: url("assets/fonts/jost-variablefont_wght-webfont.eot?#iefix") format("embedded-opentype"), url("../../assets/fonst/jost-variablefont_wght-webfont.woff2") format("woff2"), url("../../assets/fonst/jost-variablefont_wght-webfont.woff") format("woff"), url("../../assets/fonst/jost-variablefont_wght-webfont.ttf") format("truetype"), url("../../assets/fonst/jost-variablefont_wght-webfont.svg#neue_plakbold") format("svg");
+  src: url("assets/fonts/jost-variablefont_wght-webfont.eot?#iefix") format("embedded-opentype"), url("assets/fonts/jost-variablefont_wght-webfont.woff2") format("woff2"), url("assets/fonts/jost-variablefont_wght-webfont.woff") format("woff"), url("assets/fonts/jost-variablefont_wght-webfont.ttf") format("truetype"), url("assets/fonts/jost-variablefont_wght-webfont.svg#neue_plakbold") format("svg");
   font-weight: normal;
   font-style: normal;
 }
