@@ -220,6 +220,8 @@ const Mostrar = () => {
                                 for(let pista of pistas) {
                                     if (pista.duracionCancion > 180) {
                                         color = "red";
+                                    } else {
+                                        color = "";
                                     }
         html += `\n                 <li class="disk__songs-list-items">
                                         <span class="disk__song-item">
