@@ -192,6 +192,8 @@ const Mostrar = () => {
     contenedor.innerHTML = '';
     for(let disco of discosArray) {
         let color = "";
+        let cdor = 0;
+        let pistaMax = -1;
         let html = '';
         html += '\n     <div class="disk">';
         html += '\n         <div class="disk__cover">';
@@ -211,7 +213,11 @@ const Mostrar = () => {
         html += `\n                 Pistas <span>${disco.pistasArray.length}</span>`;
         html += '\n             </div>';
         html += '\n             <div class="disk__summary-songs">';
-        html += '\n                 Duración <span>#</span>';
+                                    let cdorDuracion = disco.pistasArray;
+                                    for (let pista of cdorDuracion){
+                                        cdor += pista.duracionCancion;
+                                    }
+        html += `\n                 Duración <span>${cdor}</span>`;
         html += '\n             </div>';
         html += '\n         </div>';
         html += '\n         <div class="disk__songs">';
@@ -222,6 +228,9 @@ const Mostrar = () => {
                                         color = "red";
                                     } else {
                                         color = "";
+                                    }
+                                    if (pista.duracionCancion > pistaMax){
+                                        pistaMax = pista.duracionCancion
                                     }
         html += `\n                 <li class="disk__songs-list-items">
                                         <span class="disk__song-item">
@@ -236,10 +245,10 @@ const Mostrar = () => {
         html += '\n         </div>';
         html += '\n         <div class="disk__summary-total">';
         html += '\n             <div class="disk__summary-total__item">';
-        html += '\n                 <span>Promedio de duración: </span>#';
+        html += `\n                 <span>Promedio de duración: </span>${(cdor/(disco.pistasArray.length)).toFixed(0)}s`;
         html += '\n             </div>';
         html += '\n             <div class="disk__summary-total__item">';
-        html += '\n                 <span>Pista con mayor duración: </span>#';
+        html += `\n                 <span>Pista con mayor duración: </span>${pistaMax}`;
         html += '\n             </div>';
         html += '\n         </div>';
         html += '\n     </div>';

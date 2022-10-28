@@ -191,20 +191,22 @@ footer ul li a:hover {
   display: flex;
   gap: 2rem;
   margin: 2rem auto;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .disk {
   display: flex;
   flex-direction: column;
-  max-width: 200px;
+  max-width: 220px;
 }
 .disk__cover {
   background-color: #ffffff;
   border-radius: 15px;
 }
 .disk__cover-image {
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
   background: linear-gradient(180deg, #647480 0%, #5B84A4 100%);
   border-radius: 15px;
   display: flex;
