@@ -208,7 +208,7 @@ const Mostrar = () => {
         html += '\n         </div>';
         html += '\n         <div class="disk__summary">';
         html += '\n             <div class="disk__summary-songs">';
-        html += '\n                 Pistas <span>#</span>';
+        html += `\n                 Pistas <span>${disco.pistasArray.length}</span>`;
         html += '\n             </div>';
         html += '\n             <div class="disk__summary-songs">';
         html += '\n                 Duración <span>#</span>';
