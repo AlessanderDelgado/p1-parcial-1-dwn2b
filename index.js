@@ -1,45 +1,10 @@
 'use strict';
 
-/*
- * APELLIDO, NOMBRE | APELLIDO, NOMBRE
- */
-
-// Ejemplo de la estructura de un disco:
-// let disco = {
-//     Nombre: 'El lado oscuro de la Programación',
-//     Autor: 'Los Programadores Anónimos',
-//     Codigo: 1,
-//     Pistas: [
-//         {
-//             Nombre: 'Esa cajita loca llamada variablecita',
-//             Duracion: 200,
-//         },
-//         {
-//             Nombre: 'Nunca quise ser un NaN',
-//             Duracion: 180,
-//         },
-//         {
-//             Nombre: 'No quiero programar',
-//             Duracion: 90,
-//         },
-//         {
-//             Nombre: 'Bajo presión',
-//             Duracion: 240,
-//         },
-//         {
-//             Nombre: 'La odisea de las variables privadas',
-//             Duracion: 120,
-//         },
-//         {
-//             Nombre: 'Sr. Programador',
-//             Duracion: 720,
-//         },
-//     ],
-// };
 
 // Discos:
 var discosArray = []; // Array de discos
 
+//Funciones para validaciones
 
 /**
  * Valida que el dato ingresado sea correcto.
@@ -56,14 +21,11 @@ function validarString(cadena) {
     /* Si ingresa datos vacīos o clickea en cancelar sin ingresar nada */
     if (cadena == "" || cadena == null || cadena == undefined){
         /* Muestro mensaje de alerta */
-        alert ("Algo salio mal, volve a ingresar un dato");
+        alert ("Algo salió mal, volvé a ingresar un dato. (No debe estar vacío)");
         return true;
     }
     return false;
 }
-
-
-/* Ver si se puede dividir esta función en dos, o crear dos "subfunciones", para que cada una haga una sola cosa?*/
 
 /**
  * Valida que el código no esté repetido y que esté en rango.
@@ -79,7 +41,7 @@ function validarCodigo(codigo){
             /* Si el codigo del disco ingresado es igual a algún código existente */
             if (disco.codigoDisco == codigo){
                 /* Muestro mensaje de alerta */
-                alert(" El codigo está repetido, ingrese otro codigo")
+                alert("El codigo está repetido, ingresá otro código.")
                 flag = true;
             }
         }
@@ -88,7 +50,7 @@ function validarCodigo(codigo){
     /* Si el código no está en rango, es string o está vacīo*/
     if (codigo <= 0 || codigo > 999 || isNaN(codigo) || codigo == ""){
         /* Muestro mensaje de alerta */
-        alert("Codigo invalido, ingrese entre 1 y 999");
+        alert("Código invalido. Debe estar entre 1 y 999.");
         flag = true;
     }
     return flag;
@@ -102,136 +64,151 @@ function validarCodigo(codigo){
  */
 function validacionDuracion(duracion) {
     let flag = false;
+    /* Si la duración no está entre 0 y 7200(inclusive), o no es un número */
     if (duracion < 0 || duracion > 7200 || isNaN(duracion)){
-        alert("La duracion esta mal");
+        /* Muestro mensaje de alerta */
+        alert("La duracion no es válida. Debe estar entre 0 y 7200.");
         flag = true;
     }
     return flag;
 }
 
 
-//Ai: hice esta funcion pero dsp me di cuenta que no es necesaria.
-//Igualmente, de forma conceptual no se bien qué es lo que va mejor.
-/*function contarDiscos () {
-    let cantidadDiscos = discosArray.length;
-    return cantidadDiscos;
-}*/
-
 
 // Función Cargar:
 /**
- * Carga nuevo disco
+ * Carga nuevo disco. Se llama a la función con el evento click desde el html.
  */
 const Cargar = () => {
-    // Cositas:
-    let disco = {
 
-    }
+    let disco = {} //Creo el objeto disco
+
+    /* Bucle para pedir datos del disco. */
     /* Pido ingresar datos, hasta que la función de validar que corresponda de FALSE y salga del bucle. */
     do {
-        disco.nombreDisco = prompt("Ingrese el nombre del disco");
+        disco.nombreDisco = prompt("Ingrese el nombre del disco.");
     } while (validarString(disco.nombreDisco)) // llamar a la función, que devuelve true o false.
 
     do{
-        disco.banda = prompt("Ingrese el nombre de la banda");
-    } while (validarString(disco.banda))
+        disco.banda = prompt("Ingrese el nombre de la banda.");
+    } while (validarString(disco.banda)) // llamar a la función, que devuelve true o false.
 
     do {
-        disco.codigoDisco = parseInt(prompt("Ingrese codigo numerico del disco"));
-    } while (validarCodigo(disco.codigoDisco));
+        disco.codigoDisco = parseInt(prompt("Ingrese código numérico del disco."));
+    } while (validarCodigo(disco.codigoDisco)); // llamar a la función, que devuelve true o false.
 
-    disco.pistasArray = []
+    disco.pistasArray = [] // Creo el array de pistas adentro del objeto disco.
 
-
+    /* Bucle para pedir los datos de las pistas */
     do {
-        let pista = {}
+        let pista = {} // Creo el objeto pista
+
+        /* Pido ingresar datos, hasta que la función de validar que corresponda de FALSE y salga del bucle. */
         do {
-            pista.nombreCancion = prompt("Ingrese la cancion");
+            pista.nombreCancion = prompt("Ingrese una canción.");
         } while (validarString(pista.nombreCancion))
         do {
-            pista.duracionCancion = parseInt(prompt("Ingrese la duracion de la cancion"));
+            pista.duracionCancion = parseInt(prompt("Ingrese la duración de la canción."));
         } while (validacionDuracion(pista.duracionCancion ));
 
+        /* Hago un push, es decir ingreso la pista dentro del array de pistas, que es parte del objeto disco.*/
         disco.pistasArray.push(pista);
 
-    } while (confirm("Quiere seguir cargando canciones?"));
+    /* Pregunto si quiere seguir cargando canciones. Si pone cancelar, da FALSE y sale del bucle. */
+    } while (confirm("¿Quiere seguir cargando canciones?"));
 
+    /* Ingreso el disco dentro del array de discos. */
     discosArray.push(disco)
 };
 
 // Función Mostrar:
 /**
- * Muestra discos
+ * Muestra discos. Se llama a la función con el evento click desde el html.
  */
-
-
 const Mostrar = () => {
-
-    // Variable para ir armando la cadena:
-    // function colorear(duracion) {
-
-    //     let pista = {};
-
-    //     if (pista.duracion > 180 ){
-    //         alert("FUNCIONA QUE DETECTA QUE TIENE MAS DE 180");
-    //         /*pPintado.setAttribute("class", "red");*/
-
-    //         var elemento = document.querySelector("p");
-    //         /*.innerHTML;*/
-    //         elemento.classList.add('red');
-    //     }
-    //     return;
-    // }
 
     /* Agarra el lugar del HTML donde se va a mostrar la cantidad de discos, y concatena la cantidad de discos*/
     let infoDiscos = document.getElementById ('cantidad');
-    //cantDiscos.innerHTML = 'Cantidad de discos: ' + contarDiscos (); --> esto es si se usa la funcion contarDiscos
-    infoDiscos.innerHTML = `<div class="disk-quantity">Cantidad de discos: <span id="cantidad">${discosArray.length}</span></div>` ;
+    infoDiscos.innerHTML = `<div class="disk-quantity">Cantidad de discos: <span id="cantidad">${discosArray.length}</span></div>` ; //La cantidad de discos es la longitud del array de discos.
 
+    /* Agarra el contenedor del HTML donde se va a mostrar la información de los discos y arma el HTML.*/
     let contenedor = document.getElementById('info');
+
+    /* Empiezo con el contenedor vacīo.*/
     contenedor.innerHTML = '';
+
+    /* Recorro el array de discos elemento por elemento, es decir, disco por disco, y por cada uno de ellos, muestro la información con una estructura de html.*/
     for(let disco of discosArray) {
+
+        /* Inicializo la variable color en vacīo. Será una clase de ccs. Luego puede cambiar de valores dependiendo si quiero destacar algo. */
         let color = "";
-        let cdor = 0;
+
+        /* Inicialozo la duración del disco en 0. Luego va a ir sumándo las duraciones de cada canción. */
+        let duracionDisco = 0;
+
+        /* Inicializo la pista de mayor duración en -1 (válido para este contexto). Variable que se va a usar para comparar y encontra la pista de mayor duración.*/
         let pistaMax = -1;
+
+        /* Inicializo la variable que indicará el nombre de la pista de mayor duración*/
+        let nombrePistaMax = "";
+
+        /* Inicializo la variable html en vacīo, que será el html que se irá creando por cada disco.*/
         let html = '';
+
+       /* Por cada disco, voy a crear la estructura siguiente. Irá contactenando líneas*/
         html += '\n     <div class="disk">';
         html += '\n         <div class="disk__cover">';
         html += '\n             <div class="disk__cover-image color">';
-        html += '\n                 <img src="assets/img/disk.png" alt="">';
+        html += '\n                 <img src="assets/img/disk.png" alt="icono disco">';
         html += '\n             </div>';
         html += '\n             <div class="disk__code">';
-        html += `\n                 Código ${disco.codigoDisco}`;
+        html += `\n                <span> Código ${disco.codigoDisco} </span>`; //inserta el código del disco.
         html += '\n             </div>';
         html += '\n             <div class="disk__cover-title">';
-        html += `\n                 <h3>${disco.nombreDisco}</h3>`;
-        html += `\n                 <h4>${disco.banda}</h4>`;
+        html += `\n                 <h3>${disco.nombreDisco}</h3>`; //inserta el nombre del disco.
+        html += `\n                 <h4>${disco.banda}</h4>`; //inserta la banda del disco.
         html += '\n             </div>';
         html += '\n         </div>';
         html += '\n         <div class="disk__summary">';
         html += '\n             <div class="disk__summary-songs">';
-        html += `\n                 Pistas <span>${disco.pistasArray.length}</span>`;
+        html += `\n                 Pistas <span>${disco.pistasArray.length}</span>`; //inserta la cantidad de pistas del disco.
         html += '\n             </div>';
         html += '\n             <div class="disk__summary-songs">';
-                                    let cdorDuracion = disco.pistasArray;
-                                    for (let pista of cdorDuracion){
-                                        cdor += pista.duracionCancion;
+                                    /* Creo una variable con el array de las pistas del disco. */
+                                    let pistas = disco.pistasArray;
+
+                                    /* Recorro el array de pistas elemento por elemento, es decir, pista por pista*/
+                                    for (let pista of pistas){
+
+                                        /* Sumo a la variable duracionDisco, la duración de cada pista.*/
+                                        duracionDisco += pista.duracionCancion;
                                     }
-        html += `\n                 Duración <span>${cdor}</span>`;
+
+                                    /* Inserto la duración del disco*/
+        html += `\n                 Duración <span>${duracionDisco}s</span>`;
         html += '\n             </div>';
         html += '\n         </div>';
         html += '\n         <div class="disk__songs">';
         html += '\n             <ul class="disk__songs-list">';
-                                let pistas = disco.pistasArray;
+
+                                /* Recorro el array de pistas nuevamente, esta vez para escribir la información de cada pista. */
                                 for(let pista of pistas) {
+
+                                    /* Si la duración de la pista es mayor a 180s*/
                                     if (pista.duracionCancion > 180) {
+                                        /* La variable color cambia a rojo. En la línea 216 esta variable se inserta dentro del html para cambiarle el estilo. */
                                         color = "red";
                                     } else {
+                                        /* Si no es mayor a 180, no cambia el color.*/
                                         color = "";
                                     }
+
+                                    /* Algoritmo para averiguar la pista de mayor duración dentro del disco.*/
                                     if (pista.duracionCancion > pistaMax){
-                                        pistaMax = pista.duracionCancion
+                                        pistaMax = pista.duracionCancion;
+                                        nombrePistaMax = pista.nombreCancion;
                                     }
+                                    /* Inserta nombre y duración de la canción. */
         html += `\n                 <li class="disk__songs-list-items">
                                         <span class="disk__song-item">
                                             ${pista.nombreCancion}
@@ -245,25 +222,21 @@ const Mostrar = () => {
         html += '\n         </div>';
         html += '\n         <div class="disk__summary-total">';
         html += '\n             <div class="disk__summary-total__item">';
-        html += `\n                 <span>Promedio de duración: </span>${(cdor/(disco.pistasArray.length)).toFixed(0)}s`;
+                                    /* Calcula el promedio de duración de las pistas*/
+        html += `\n                <span>Promedio de duración: </span>${(duracionDisco/(disco.pistasArray.length)).toFixed(0)}s `;
         html += '\n             </div>';
         html += '\n             <div class="disk__summary-total__item">';
-        html += `\n                 <span>Pista con mayor duración: </span>${pistaMax}`;
+                                    /* Muestra la pista con mayor duración. Usa el resultado del algoritmo de la línea 207.*/
+        html += `\n               <span>  Pista con mayor duración: </span>${nombrePistaMax} - ${pistaMax}s  `;
         html += '\n             </div>';
         html += '\n         </div>';
         html += '\n     </div>';
 
+        /* Inserta en el contenedor del html, todo lo creado anteriormente.*/
         contenedor.innerHTML += html;
     }
-    const randomColor = Math.floor(Math.random()*16777215).toString(16);
-    let cambiaColor = document.getElementsByClassName('color');
-    for (const elemento of cambiaColor) {
-        elemento.style.backgroundColor = "#" + randomColor;
-    }
-    // colorear(pista.duracionCancion);
+
+
 };
 
-const setBg = () => {
 
-  }
-// Todas las funciones que necesites:
